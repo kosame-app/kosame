@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "kosame is alive"
+      - run: echo "小雨が静かに降っていた。" > data/latest.json
