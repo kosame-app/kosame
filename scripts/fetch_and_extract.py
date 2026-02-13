@@ -12,8 +12,10 @@ body = re.split("</body>", body, flags=re.DOTALL)[0]
 text = re.sub("<.*?>", "", body)
 sentences = [s.strip() for s in text.split("。") if "雨" in s]
 
-sentence = random.choice(sentences)
-
+if not sentences:
+    sentence = "今日は雨に関する一文が見つかりませんでした。"
+else:
+    sentence = random.choice(sentences)
 data = {
     "sentence": sentence + "。",
     "author": "夏目漱石",
