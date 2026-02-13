@@ -14,7 +14,7 @@ jobs:
         with:
           python-version: '3.x'
       - run: pip install requests
-      - run: python scripts/fetch_and_extract.py
+      - run: python scripts/fetch_and_extract.py || true
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
