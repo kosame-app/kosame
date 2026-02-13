@@ -35,5 +35,5 @@ jobs:
           git config user.name "kosame"
           git config user.email "kosame@users.noreply.github.com"
           git add data/latest.json
-          git commit -m "daily rain sentence"
+          git commit -m "daily rain sentence" || echo "no changes"
           git push
