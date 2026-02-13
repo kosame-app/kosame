@@ -7,4 +7,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "小雨が静かに降っていた。" > data/latest.json
+      - run: |
+      mkdir -p data
+      echo "小雨が静かに降っていた。" > data/latest.json
