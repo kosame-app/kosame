@@ -6,7 +6,34 @@ on:
     - cron: "0 20 * * *"
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "kosame is alive"
+      - uses: actions/checkout@v4
+
+      - name: Pick rain sentence
+        run: |
+          mkdir -p data
+          python - << 'EOF'
+          import random, json
+
+          with open("sentences/rain.txt", encoding="utf-8") as f:
+              lines = [l.strip() for l in f if l.strip()]
+
+          sentence = random.choice(lines)
+
+          with open("data/latest.json", "w", encoding="utf-8") as f:
+              json.dump(
+                  {"sentence": sentence},
+                  f,
+                  ensure_ascii=False
+              )
+          EOF
+
+      - name: Commit result
+        run: |
+          git config user.name "kosame"
+          git config user.email "kosame@users.noreply.github.com"
+          git add data/latest.json
+          git commit -m "daily rain sentence"
+          git push
