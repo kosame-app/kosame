@@ -3,30 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <title>kosame</title>
+
 <style>
+
 body{
-font-family: serif;
+margin:0;
+height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
-height:100vh;
-background:#f7f7f7;
-font-size:24px;
+background:linear-gradient(#e8edf2,#cfd8df);
+font-family: "Hiragino Mincho ProN", serif;
+color:#2c2c2c;
+}
+
+.container{
+max-width:700px;
 padding:40px;
 text-align:center;
 }
+
+#text{
+font-size:28px;
+line-height:1.8;
+letter-spacing:0.05em;
+}
+
+.title{
+position:absolute;
+top:30px;
+left:40px;
+font-size:14px;
+letter-spacing:0.2em;
+color:#666;
+}
+
 </style>
+
 </head>
+
 <body>
 
-<div id="text">loading...</div>
+<div class="title">
+kosame
+</div>
+
+<div class="container">
+<div id="text">...</div>
+</div>
 
 <script>
+
 fetch("data/latest.json")
 .then(r => r.json())
 .then(d => {
 document.getElementById("text").innerText = d.sentence
 })
+
 </script>
 
 </body>
