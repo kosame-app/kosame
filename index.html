@@ -84,8 +84,18 @@ kosame
 fetch("data/latest.json")
 .then(r => r.json())
 .then(d => {
-document.getElementById("text").innerText =
-d.sentence + "\n— " + d.author + "『" + d.work + "』"
+
+let text = d.sentence
+
+if(d.author){
+text += "\n— " + d.author
+}
+
+if(d.work){
+text += "『" + d.work + "』"
+}
+
+document.getElementById("text").innerText = text
 })
 
 const rain = document.getElementById("rain")
