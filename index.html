@@ -118,6 +118,15 @@ authorText += "『" + d.work + "』"
 
 document.getElementById("author").innerText = authorText
 
+const today = new Date()
+
+const dateText =
+today.getFullYear() + "." +
+(today.getMonth()+1) + "." +
+today.getDate()
+
+document.getElementById("date").innerText = dateText
+
 })
 
 const rain = document.getElementById("rain")
