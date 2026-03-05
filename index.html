@@ -90,17 +90,20 @@ fetch("data/latest.json")
 .then(r => r.json())
 .then(d => {
 
-let text = d.sentence
+document.getElementById("text").innerText = d.sentence
+
+let authorText = ""
 
 if(d.author){
-text += "\n— " + d.author
+authorText += "— " + d.author
 }
 
 if(d.work){
-text += "『" + d.work + "』"
+authorText += "『" + d.work + "』"
 }
 
-document.getElementById("text").innerText = text
+document.getElementById("author").innerText = authorText
+
 })
 
 const rain = document.getElementById("rain")
