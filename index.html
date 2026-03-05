@@ -100,9 +100,7 @@ kosame
 
 <script>
 
-fetch("data/latest.json")
-.then(r => r.json())
-.then(d => {
+function showSentence(d){
 
 document.getElementById("text").innerText = d.sentence
 
@@ -118,6 +116,27 @@ authorText += "『" + d.work + "』"
 
 document.getElementById("author").innerText = authorText
 
+}
+  
+fetch("https://api.open-meteo.com/v1/forecast?latitude=33.59&longitude=130.40&current_weather=true")
+.then(r => r.json())
+.then(weather => {
+
+if(weather.current_weather.weathercode >= 51){
+
+fetch("data/rain.json")
+.then(r => r.json())
+.then(showSentence)
+
+}else{
+
+fetch("data/latest.json")
+.then(r => r.json())
+.then(showSentence)
+
+}
+
+})
 const today = new Date()
 
 const dateText =
