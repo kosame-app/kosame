@@ -16,6 +16,7 @@ if not sentences:
     sentence = "今日は雨に関する一文が見つかりませんでした。"
 else:
     sentence = random.choice(sentences)
+　　 author = "青空文庫"
 data = {
     "sentence": sentence + "。",
     "author": "夏目漱石",
