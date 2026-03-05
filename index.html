@@ -81,7 +81,10 @@ kosame
 
 <script>
 
-fetch("data/latest.json")
+document.getElementById("text").innerText =
+d.sentence + "\n— " + d.author
+  
+  fetch("data/latest.json")
 .then(r => r.json())
 .then(d => {
 document.getElementById("text").innerText = d.sentence
@@ -101,8 +104,6 @@ drop.style.opacity=Math.random()
 rain.appendChild(drop)
 
 }
-document.getElementById("text").innerText =
-d.sentence + "\n— " + d.author
   
 </script>
 
