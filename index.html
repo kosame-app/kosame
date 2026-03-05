@@ -81,13 +81,11 @@ kosame
 
 <script>
 
-document.getElementById("text").innerText =
-d.sentence + "\n— " + d.author
-  
-  fetch("data/latest.json")
+fetch("data/latest.json")
 .then(r => r.json())
 .then(d => {
-document.getElementById("text").innerText = d.sentence
+document.getElementById("text").innerText =
+d.sentence + "\n— " + d.author
 })
 
 const rain = document.getElementById("rain")
