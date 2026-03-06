@@ -108,6 +108,8 @@ kosame
 
 <script>
 
+<script>
+
 function showSentence(d){
 
 document.getElementById("text").innerText = d.sentence
@@ -125,12 +127,15 @@ authorText += "『" + d.work + "』"
 document.getElementById("author").innerText = authorText
 
 }
-  
+
 fetch("https://api.open-meteo.com/v1/forecast?latitude=33.59&longitude=130.40&current_weather=true")
 .then(r => r.json())
 .then(weather => {
 
-if(weather.current_weather.weathercode >= 51 && weather.current_weather.weathercode <= 82)
+let code = weather.current_weather.weathercode
+
+// 雨判定
+if(code >= 51 && code <= 82){
 
 fetch("data/rain.json")
 .then(r => r.json())
@@ -138,24 +143,15 @@ fetch("data/rain.json")
 
 }else{
 
-fetch("data/latest.json")
-.then(r => r.json())
-.then(showSentence)
+// 晴れ・曇り
+document.getElementById("text").innerText = "今日は雨を待つ日"
+document.getElementById("author").innerText = ""
 
 }
 
 })
-const today = new Date()
 
-const dateText =
-today.getFullYear() + "." +
-(today.getMonth()+1) + "." +
-today.getDate()
-
-document.getElementById("date").innerText = dateText
-
-})
-
+// 雨アニメーション
 const rain = document.getElementById("rain")
 
 for(let i=0;i<120;i++){
@@ -170,6 +166,8 @@ drop.style.opacity=Math.random()
 rain.appendChild(drop)
 
 }
+
+</script>
   
 </script>
 
