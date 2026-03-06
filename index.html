@@ -22,7 +22,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 background:linear-gradient(#e8edf2,#cfd8df);
-font-family: 'DotGothic16', serif;
+font-family: 'DotGothic16', sans-serif;
 color:#2c2c2c;
 }
 
@@ -75,11 +75,6 @@ transform:translateY(-100px);
 transform:translateY(100vh);
 }
 
-}#text{
-font-size:28px;
-line-height:1.8;
-letter-spacing:0.05em;
-}
 
 #author{
 margin-top:25px;
@@ -168,7 +163,7 @@ document.getElementById("author").innerText = ""
 // 雨アニメーション
 const rain = document.getElementById("rain")
 
-for(let i=0;i<120;i++){
+for(let i=0;i<80;i++){
 
 const drop = document.createElement("div")
 drop.className="drop"
