@@ -130,7 +130,7 @@ fetch("https://api.open-meteo.com/v1/forecast?latitude=33.59&longitude=130.40&cu
 .then(r => r.json())
 .then(weather => {
 
-if(weather.current_weather.weathercode >= 51){
+if(weather.current_weather.weathercode >= 51 && weather.current_weather.weathercode <= 82)
 
 fetch("data/rain.json")
 .then(r => r.json())
