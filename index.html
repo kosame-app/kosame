@@ -99,7 +99,27 @@ line-height:1.8;
 #author{
 font-size:22px;
 }
+  
+}
 
+/* 縦書き文学モード */
+
+.vertical{
+writing-mode: vertical-rl;
+text-orientation: mixed;
+margin:auto;
+height:70vh;
+font-size:42px;
+line-height:2.2;
+letter-spacing:0.15em;
+}
+
+.vertical #author{
+margin-top:40px;
+font-size:20px;
+writing-mode: vertical-rl;
+}
+  
 .title{
 font-size:29px;
 left:24px;
@@ -122,7 +142,7 @@ padding:30px;
 kosame
 </div>
 
-<div class="container">
+<div class="container vertical">
 <div id="date"></div>
 <div id="text"></div>
 <div id="author"></div>
