@@ -1,0 +1,33 @@
+name: Update rain.json
+
+on:
+  schedule:
+    - cron: "0 21 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download Aozora
+        run: |
+          mkdir aozora
+          cd aozora
+          curl -L -o rain.zip https://www.aozora.gr.jp/cards/000081/files/456_ruby_145.zip
+          unzip -o rain.zip
+
+      - name: Run Script
+        run: |
+          python scripts/update.py
+
+      - name: Commit
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "auto update rain" || echo "no change"
+          git push
