@@ -1,0 +1,55 @@
+name: update rain quotes
+
+on:
+  schedule:
+    - cron: '0 21 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fetch Aozora
+        run: |
+          curl -L https://www.aozora.gr.jp/cards/000081/files/456_ruby_145.zip -o text.zip
+          unzip text.zip
+
+      - name: Extract Rain Sentence
+        run: |
+          python <<EOF
+import json
+import random
+import glob
+
+rain_words = ["雨","小雨","霧雨","しとしと","降り","湿"]
+
+sentences = []
+
+for file in glob.glob("*.txt"):
+    with open(file,encoding="shift_jis",errors="ignore") as f:
+        text = f.read()
+        for line in text.split("。"):
+            if any(word in line for word in rain_words):
+                sentences.append(line+"。")
+
+if sentences:
+    result = {
+        "sentence": random.choice(sentences),
+        "author":"青空文庫",
+        "work":""
+    }
+
+    with open("data/rain.json","w",encoding="utf-8") as f:
+        json.dump(result,f,ensure_ascii=False,indent=2)
+EOF
+
+      - name: Commit
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "update rain quote"
+          git push
