@@ -179,7 +179,7 @@ let code = weather.current_weather.weathercode
 // 雨判定
 if(code >= 51 && code <= 82){
 
-fetch("data/rain.json")
+fetch("data/latest.json")
 .then(r => r.json())
 .then(showSentence)
 
