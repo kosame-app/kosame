@@ -23,9 +23,13 @@ jobs:
           curl -L -o rain.zip https://www.aozora.gr.jp/cards/000081/files/456_ruby_145.zip
           unzip -o rain.zip
 
-      - name: Run Script
-        run: |
-          python scripts/update.py
+     - name: Build Library
+  　　　run: |
+   　　　 python scripts/build_library.py
+
+　　　- name: Select Daily Quote
+  　　　run: |
+    　　　python scripts/update.py
 
       - name: Commit
         run: |
